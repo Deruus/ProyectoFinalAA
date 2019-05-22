@@ -12,6 +12,8 @@ import numpy as np
 import tensorflow as tf
 
 from dream import *
+import random
+import math
 
 UPLOAD_FOLDER = 'carga/'
 RESULT_FOLDER = 'resultado/'
@@ -48,12 +50,29 @@ def upload():
 def dream(fullpath, filename):
     img0 = PIL.Image.open(fullpath).convert('RGB')
     img0 = np.float32(img0)
-    layer_tensor = model.layer_tensors[2]
-    layer = 'mixed4c'  # 'mixed3a'
 
-    img0 = optimizacion_recursiva(layer_tensor=layer_tensor, image=image,
-                 num_iterations=10, step_size=3.0, rescale_factor=0.7,
-                 num_repeats=4, blend=0.2)
+
+    numero_aleatorio = random.randint(0,3)
+    if numero_aleatorio == 1:
+        layer_tensor = model.layer_tensors[2]
+        img0 = optimizar_imagen(layer_tensor, img0,
+                   num_iterations=10, step_size=6.0, tile_size=400)
+    elif numero_aleatorio == 2:
+        layer_tensor = model.layer_tensors[3]
+        img0 = optimizacion_recursiva(layer_tensor=layer_tensor, image=img0,
+                                      num_iterations=10, step_size=3.0, rescale_factor=0.7,
+                                      num_repeats=4, blend=0.2)
+    else:
+        layer_tensor = model.layer_tensors[7][:, :, :, 0:3]
+        img0 = optimizacion_recursiva(layer_tensor=layer_tensor, image=img0,
+                                        num_iterations=10, step_size=3.0, rescale_factor=0.7,
+                                        num_repeats=4, blend=0.2)
+    print(numero_aleatorio)
+
+
+
+
+
     guardar_imagen(img0, filename=os.path.join(app.config['RESULT_FOLDER'], filename))
 
 
