@@ -9,7 +9,7 @@ from flask_bootstrap import Bootstrap
 
 import PIL.Image
 import numpy as np
-import tensorlow as tf
+import tensorflow as tf
 
 from dream import *
 
@@ -50,7 +50,9 @@ def dream(fullpath, filename):
     img0 = np.float32(img0)
     layer_tensor = model.layer_tensors[2]
     layer = 'mixed4c'  # 'mixed3a'
-    img0 = optimizar_imagen(layer_tensor, img0, num_iterations=10, step_size=6.0, tile_size=400)
+    img0 = optimizacion_recursiva(layer_tensor=layer_tensor, image=image,
+                                  num_iterations=10, step_size=3.0, rescale_factor=0.7,
+                                  num_repeats=4, blend=0.2)
     guardar_imagen(img0, filename=os.path.join(app.config['RESULT_FOLDER'], filename))
 
 
