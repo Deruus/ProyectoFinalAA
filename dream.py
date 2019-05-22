@@ -253,7 +253,7 @@ def optimizar_imagen(layer_tensor, image,
     #print("Image before:")
     #mostrar_imagen(img)
 
-    print("Processing image: ", end="")
+    #print("Processing image: ", end="")
 
     # Utilice TensorFlow para obtener la función matemática de la
     # gradiente del tensor de capa dado con respecto a la
@@ -369,7 +369,7 @@ def optimizacion_recursiva(layer_tensor, image,
         # Mezcle las imágenes originales y procesadas.
         image = blend * image + (1.0 - blend) * img_upscaled
 
-    print("Recursive level:", num_repeats)
+    #print("Recursive level:", num_repeats)
 
     # Procese la imagen utilizando el algoritmo DeepDream.
     img_result = optimizar_imagen(layer_tensor=layer_tensor,

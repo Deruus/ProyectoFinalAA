@@ -50,9 +50,10 @@ def dream(fullpath, filename):
     img0 = np.float32(img0)
     layer_tensor = model.layer_tensors[2]
     layer = 'mixed4c'  # 'mixed3a'
+
     img0 = optimizacion_recursiva(layer_tensor=layer_tensor, image=image,
-                                  num_iterations=10, step_size=3.0, rescale_factor=0.7,
-                                  num_repeats=4, blend=0.2)
+                 num_iterations=10, step_size=3.0, rescale_factor=0.7,
+                 num_repeats=4, blend=0.2)
     guardar_imagen(img0, filename=os.path.join(app.config['RESULT_FOLDER'], filename))
 
 
