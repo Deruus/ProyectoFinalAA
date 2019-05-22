@@ -16,7 +16,8 @@ from scipy.ndimage.filters import gaussian_filter
 
 import inception5h
 # inception.data_dir = 'models'
-inception5h.maybe_download()
+#si ya esta descargado no lo descargamos de nuevo.
+#inception5h.maybe_download()
 
 model = inception5h.Inception5h()
 
