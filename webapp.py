@@ -9,7 +9,7 @@ from flask_bootstrap import Bootstrap
 
 import PIL.Image
 import numpy as np
-import tensorflow as tf
+import tensorlow as tf
 
 from dream import *
 
